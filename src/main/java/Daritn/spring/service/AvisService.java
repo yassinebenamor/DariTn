@@ -1,8 +1,8 @@
-package Daritn.spring.services;
+package Daritn.spring.service;
 
 import org.springframework.stereotype.Service;
 
 @Service
-public class AnnonceService {
+public class AvisService {
 
 }

@@ -1,4 +1,4 @@
-package Daritn.spring.services;
+package Daritn.spring.service;
 
 import org.springframework.stereotype.Service;
 
