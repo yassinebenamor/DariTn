@@ -1,8 +1,16 @@
 package Daritn.spring.service;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
 
-@Service
-public class AnnonceService {
+import Daritn.spring.entity.Annonce;
+
+public interface AnnonceService {
+	Annonce saveAnnonce(Annonce a);
+	Annonce updateAnnonce(Annonce a);
+	void deleteAnnonce(Annonce a);
+	void deleteAnnonceById(Long id);
+	Annonce getAnnonce(Long id);
+	List<Annonce> getAllAnnonces();
+
 
 }
