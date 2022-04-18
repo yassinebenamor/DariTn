@@ -2,7 +2,7 @@ package Daritn.spring.entity;
 
 import javax.persistence.Entity;
 
-@Entity
+//@Entity
 public class Role {
 
 }
