@@ -158,13 +158,14 @@ public class User implements Serializable {
 	@Column(name = "modifiedDate")
 	private Date modifiedDate;
 
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "T_USER_ROLES", joinColumns = @JoinColumn(name = "idUser"), inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
+	//@ManyToMany(fetch = FetchType.EAGER)
+	//@JoinTable(name = "T_USER_ROLES", joinColumns = @JoinColumn(name = "idUser"), inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
 
 	
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 	private List<Annonce> annonces;
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 	private List<Favoris> favoris;
 

@@ -27,7 +27,7 @@ public class Annonce implements Serializable {
 	private Long idAnnonce;
 	@Column
 	private double prix;
-//test
+
 	@Column
 	private double surface;
 	@Column
