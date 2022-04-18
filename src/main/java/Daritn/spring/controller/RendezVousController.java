@@ -39,24 +39,20 @@ public class RendezVousController {
 		Long idd=1L;
 		return RdvService.retrieveRdv(idd);
 	}
-	
 	@PostMapping(value = "/saverdv")
-	public RendezVous Addrdv(@RequestBody RendezVous rdv)
+	public RendezVous Addrdv(@RequestBody RendezVous RendezVous)
 	{	
-		return RdvService.addRdv(rdv);
+		return RdvService.addRdv(RendezVous);
 	}
-	
 	@PutMapping(value = "/updaterdv")
-	public RendezVous Editrdv(@RequestBody RendezVous rdv)
+	public RendezVous Editrdv(@RequestBody RendezVous RendezVous)
 	{	
-		return RdvService.EditRdv(rdv);
+		return RdvService.EditRdv(RendezVous);
 	}
-	
 	@DeleteMapping(value = "/deleterdv")
 	public void Deleterdv(@RequestParam Long id)
 	{	
-		Long idd=1L;
-		RdvService.DeleteRdv(idd);
+		RdvService.DeleteRdv(id);
 	}
 	@GetMapping(value = "/r")
 	public List<RendezVous> Rechercherdv(@RequestParam String lieu,@RequestParam String etat)

@@ -1,5 +1,6 @@
 package Daritn.spring.controller;
 
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import Daritn.spring.entity.ContratLocation;
+import Daritn.spring.entity.EnumeratedEtat;
 import Daritn.spring.service.ContratLocationService;
 
 @RestController
@@ -34,13 +36,14 @@ public class ContratLocationController {
 	@ResponseBody
 	public ContratLocation RetrieveContratL(@RequestParam Long id)
 	{
-		Long idd=1L;
-		return contratLocationService.retrieveContratLocation(idd);
+		return contratLocationService.retrieveContratLocation(id);
 	}
 	
 	@PostMapping(value = "/savecontratL")
 	public ContratLocation AddContratL(@RequestBody ContratLocation clo)
 	{	
+		clo.setDateDebut(new Date());
+		clo.setEtat(EnumeratedEtat.Waiting);
 		return contratLocationService.addContratLocation(clo);
 	}
 	
@@ -50,11 +53,20 @@ public class ContratLocationController {
 		return contratLocationService.EditContratLocation(clo);
 	}
 	
+	@PutMapping(value="/validate")
+	public int Validate(@RequestParam Long id)
+	{
+		return contratLocationService.Validate(EnumeratedEtat.Confirmed, id);	
+	}
+	@PutMapping(value="/refuse")
+	public int Refuse(@RequestParam Long id)
+	{
+		return contratLocationService.Validate(EnumeratedEtat.Refused, id);	
+	}
 	@DeleteMapping(value = "/deleteContratL")
 	public void DeleteContratL(@RequestParam Long id)
 	{	
-		Long idd=1L;
-		contratLocationService.DeleteContratLocation(idd);
+		contratLocationService.DeleteContratLocation(id);
 	}
 	
 	@GetMapping(value="/retrieve")
