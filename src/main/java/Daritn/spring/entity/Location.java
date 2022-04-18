@@ -2,8 +2,9 @@ package Daritn.spring.entity;
 
 import javax.persistence.Column;
 
-
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,8 +31,11 @@ public class Location {
 	@Column(name="idLocation")
 	private Long id;
 		
-	@Column(name="type",nullable = false)
-	private String type;
+	@Enumerated(EnumType.STRING)
+	private EnumeratedTypeBien type;
+	
+	@Enumerated(EnumType.STRING)
+	private EnumeratedTypeTemporel typelocation; 
 	
 	@OneToOne
 	private ContratLocation Contrat;
@@ -39,5 +43,11 @@ public class Location {
 	@OneToOne
 	private User Locataire;
 
+
+	
+	
+	
+	
+	
 	
 }
