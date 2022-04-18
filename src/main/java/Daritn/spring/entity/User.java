@@ -26,5 +26,7 @@ public class User implements Serializable {
 	private String type;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 	private List<Annonce> annonces;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+	private List<Favoris> favoris;
 
 }

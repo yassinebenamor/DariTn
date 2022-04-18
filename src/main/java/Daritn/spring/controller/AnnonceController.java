@@ -49,6 +49,16 @@ public void removeClient(@RequestParam Long idAnnonce) {
 annonceService.deleteAnnonceById(idAnnonce);
 }
 
+@PutMapping("/updateAnnonce")
+public Annonce updateAnmnonce(@RequestBody Annonce a) {
+	return annonceService.updateAnnonce(a);
+}
+
+@GetMapping("/getAnnonce/{Annonce-id}")
+	@ResponseBody
+	public Annonce GetAnnonce(@PathVariable("Annonce-id") Long idAnnonce) {
+	return annonceService.getAnnonce(idAnnonce);
+	}
 
 
 }

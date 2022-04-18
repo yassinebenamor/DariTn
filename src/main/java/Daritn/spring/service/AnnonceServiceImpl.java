@@ -3,6 +3,7 @@ package Daritn.spring.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import Daritn.spring.entity.Annonce;
@@ -44,7 +45,7 @@ public class AnnonceServiceImpl implements AnnonceService{
 
 	@Override
 	public List<Annonce> getAllAnnonces() {
-		return AnnonceRepository.findAll();
+		return AnnonceRepository.findAll(Sort.by("prix").descending());
 	}
 
 }
