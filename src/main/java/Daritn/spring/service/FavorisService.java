@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import Daritn.spring.entity.Annonce;
+
 import Daritn.spring.entity.Favoris;
 import Daritn.spring.repository.FavorisRepository;
 

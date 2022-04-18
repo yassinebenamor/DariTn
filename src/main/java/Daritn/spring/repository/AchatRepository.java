@@ -1,8 +1,10 @@
 package Daritn.spring.repository;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public interface AchatRepository {
+import Daritn.spring.entity.Achat;
+
+
+public interface AchatRepository extends JpaRepository<Achat, Long> {
 
 }

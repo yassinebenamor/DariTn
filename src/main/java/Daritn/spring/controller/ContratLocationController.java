@@ -1,8 +1,97 @@
 package Daritn.spring.controller;
 
-import org.springframework.stereotype.Controller;
+import java.util.Date;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+import Daritn.spring.entity.ContratLocation;
+import Daritn.spring.entity.EnumeratedEtat;
+import Daritn.spring.service.ContratLocationService;
+
+@RestController
+@RequestMapping("contratlocation")
+@CrossOrigin("*")
 public class ContratLocationController {
+	@Autowired
+	private ContratLocationService contratLocationService;
+	
 
+	
+	@GetMapping("/")
+	@ResponseBody
+	public List<ContratLocation> getContratLs()
+	{	
+		return contratLocationService.getContratLs();
+	}
+	
+	@GetMapping(value="/retrievecl")
+	@ResponseBody
+	public ContratLocation RetrieveContratL(@RequestParam Long id)
+	{
+		return contratLocationService.retrieveContratLocation(id);
+	}
+	
+	@PostMapping(value = "/savecontratL")
+	public ContratLocation AddContratL(@RequestBody ContratLocation clo)
+	{	
+		clo.setDateDebut(new Date());
+		clo.setEtat(EnumeratedEtat.Waiting);
+		return contratLocationService.addContratLocation(clo);
+	}
+	
+	@PutMapping(value = "/updateContratL")
+	public ContratLocation EditContratL(@RequestBody ContratLocation clo)
+	{	
+		return contratLocationService.EditContratLocation(clo);
+	}
+	
+	@PutMapping(value="/validate")
+	public int Validate(@RequestParam Long id)
+	{
+		return contratLocationService.Validate(EnumeratedEtat.Confirmed, id);	
+	}
+	@PutMapping(value="/refuse")
+	public int Refuse(@RequestParam Long id)
+	{
+		return contratLocationService.Validate(EnumeratedEtat.Refused, id);	
+	}
+	@DeleteMapping(value = "/deleteContratL")
+	public void DeleteContratL(@RequestParam Long id)
+	{	
+		contratLocationService.DeleteContratLocation(id);
+	}
+	
+	@GetMapping(value="/retrieve")
+	@ResponseBody
+	public List<ContratLocation> GetAllByIdUser(@RequestParam Long id)
+	{
+		return contratLocationService.getAllByIdUser(id);
+	}
+	
+	@GetMapping(value="/orderbyetatprix")
+	@ResponseBody
+	public List<ContratLocation> SortByEtat()
+	{
+		return contratLocationService.TrieByEtatPrix();
+	}
+	
+	@GetMapping(value="/rp")
+	@ResponseBody
+	public Page<ContratLocation> getContratsByLocataire(@RequestParam int id,@RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "4") int size)
+	{
+		return contratLocationService.getContratLsUser(id,page,size);
+	}
+	
 }
