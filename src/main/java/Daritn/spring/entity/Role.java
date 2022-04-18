@@ -13,8 +13,11 @@ import javax.persistence.Table;
 
 import Daritn.spring.entity.*;
 
+
 @Entity
 @Table(name = "Role")
+
+
 public class Role {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
