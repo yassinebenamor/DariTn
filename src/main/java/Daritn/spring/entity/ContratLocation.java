@@ -1,9 +1,6 @@
 package Daritn.spring.entity;
 
 import java.io.Serializable;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 import java.util.Date;
 
 import javax.persistence.Column;
