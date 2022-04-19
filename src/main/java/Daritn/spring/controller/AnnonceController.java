@@ -45,7 +45,7 @@ public List<Annonce> getAllAnnonces(){
 }
 @DeleteMapping("/supp-annonce")
 @ResponseBody
-public void removeClient(@RequestParam Long idAnnonce) {
+public void removefavoris(@RequestParam Long idAnnonce) {
 annonceService.deleteAnnonceById(idAnnonce);
 }
 

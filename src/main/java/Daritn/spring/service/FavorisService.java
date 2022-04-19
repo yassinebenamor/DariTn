@@ -25,4 +25,9 @@ public List<Favoris> getAllFavoris() {
 	return favorisRepository.findAll();
 }
 
+public void deleteFAvorisById(Long id) {
+	favorisRepository.deleteById(id);
+	
+}
+
 }
