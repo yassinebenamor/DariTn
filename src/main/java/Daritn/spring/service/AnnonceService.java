@@ -11,6 +11,6 @@ public interface AnnonceService {
 	void deleteAnnonceById(Long id);
 	Annonce getAnnonce(Long id);
 	List<Annonce> getAllAnnonces();
-
+	List<Annonce> getAllAnnoncesByTitre();
 
 }

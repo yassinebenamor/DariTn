@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -40,7 +41,12 @@ public class AnnonceController {
 
 @GetMapping("/getAllAnnonces")
 @ResponseBody
-public List<Annonce> getAllAnnonces(){
+public List<Annonce> getAllAnnoncesByTitre(){
+	return annonceService.getAllAnnoncesByTitre();
+}
+@GetMapping("/getAllAnnoncesByPrix")
+@ResponseBody
+public List<Annonce> getAllAnnoncesByPrix(){
 	return annonceService.getAllAnnonces();
 }
 @DeleteMapping("/supp-annonce")
@@ -60,5 +66,9 @@ public Annonce updateAnmnonce(@RequestBody Annonce a) {
 	return annonceService.getAnnonce(idAnnonce);
 	}
 
-
+@GetMapping(value = "/recherche")
+public List<Annonce> RechercherAnnonce(@RequestParam String lieu,@RequestParam double prix)
+{	
+	return annonceService.getRecherche(lieu, prix);
+}
 }

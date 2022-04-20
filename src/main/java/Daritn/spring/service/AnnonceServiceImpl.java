@@ -47,5 +47,13 @@ public class AnnonceServiceImpl implements AnnonceService{
 	public List<Annonce> getAllAnnonces() {
 		return AnnonceRepository.findAll(Sort.by("prix").descending());
 	}
-
+	@Override
+	public List<Annonce> getAllAnnoncesByTitre() {
+		return AnnonceRepository.findAll(Sort.by("titre").ascending());
+	}
+	public List<Annonce> getRecherche(String lieu, double prix){
+		List<Annonce> Annonce=AnnonceRepository.RechercheMulti(lieu,prix);
+		
+		return Annonce;
+	}
 }
