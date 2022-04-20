@@ -7,6 +7,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import Daritn.spring.entity.Annonce;
+
 import Daritn.spring.repository.AnnonceRepository;
 
 @Service
@@ -40,7 +41,7 @@ public class AnnonceServiceImpl implements AnnonceService{
 
 	@Override
 	public Annonce getAnnonce(Long id) {
-		return AnnonceRepository.findById(id).get();
+		return AnnonceRepository.findById(id).orElse(null);
 	}
 
 	@Override
@@ -53,6 +54,9 @@ public class AnnonceServiceImpl implements AnnonceService{
 	}
 	public List<Annonce> getRecherche(String lieu, double prix){
 		List<Annonce> Annonce=AnnonceRepository.RechercheMulti(lieu,prix);
+		//for (Annonce a: Annonce) {
+			//System.out.println("Annonce :" + a);
+		//}
 		
 		return Annonce;
 	}
