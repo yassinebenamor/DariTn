@@ -30,8 +30,8 @@ public class Annonce implements Serializable {
 
 	@Column
 	private double surface;
-	@Column
-	private double prixm2;
+	@Column(nullable=false)
+	private boolean achat;
 
 	@Column
 	private String lieu;
