@@ -23,9 +23,8 @@ import Daritn.spring.service.AnnonceServiceImpl;
 import java.util.List;
 
 @RestController
-@CrossOrigin("*")
-@RequestMapping("/annonce")
-//http://localhost:8080/SpringMVC/annonce
+@CrossOrigin(origins="*")
+@RequestMapping("/")
 public class AnnonceController {
 	@Autowired
 	private AnnonceServiceImpl annonceService ;
