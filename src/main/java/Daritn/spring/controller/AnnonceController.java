@@ -23,8 +23,7 @@ import Daritn.spring.service.AnnonceServiceImpl;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins="*")
-@RequestMapping("/")
+@CrossOrigin("*")
 public class AnnonceController {
 	@Autowired
 	private AnnonceServiceImpl annonceService ;
@@ -34,8 +33,8 @@ public class AnnonceController {
 	@ResponseBody
 	public Annonce addAnnonce(@RequestBody Annonce annonce) {
 		
-		Annonce a = annonceService.saveAnnonce(annonce);
-		return a;
+		 
+		return annonceService.saveAnnonce(annonce);
 	}
 
 @GetMapping("/getAllAnnonces")
@@ -48,9 +47,9 @@ public List<Annonce> getAllAnnoncesByTitre(){
 public List<Annonce> getAllAnnoncesByPrix(){
 	return annonceService.getAllAnnonces();
 }
-@DeleteMapping("/supp-annonce")
+@DeleteMapping("/suppAnnonce/{Annonce-id}")
 @ResponseBody
-public void removefavoris(@RequestParam Long idAnnonce) {
+public void removefavoris(@PathVariable("Annonce-id") Long idAnnonce) {
 annonceService.deleteAnnonceById(idAnnonce);
 }
 
