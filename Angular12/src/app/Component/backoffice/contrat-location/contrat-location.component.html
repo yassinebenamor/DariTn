@@ -1,0 +1,132 @@
+<div class="row">
+  <div class="row">
+    <div class="col-md-12">
+      <button class="btn" (click)="open(mymodal1)"><i class="fa fa-plus" style="color:blue"></i></button>
+        <button class="btn"(click)="Tri()"><i class="fa fa-arrow-up"></i></button>
+      <br><br>
+      <ng-template #mymodal1 let-modal1>
+        <div class="modal-header">
+          <h4 class="modal-title" >Add new Contrat</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal1.dismiss('Cross click')">
+            <span aria-hidden="true" (click)="cancel()">×</span>
+          </button>
+
+        </div>
+        <div class="center">
+          <form>
+
+            <div class="row" class="col-md-6">
+              <input type="text" placeholder="nom de contrat" [(ngModel)]="contratlocation.nom"
+                     [ngModelOptions]="{standalone : true}">
+            </div>
+
+            <div class="row" class="col-md-6">
+              <input type="date" placeholder="date debut de location" [(ngModel)]="contratlocation.dateDebut"
+                     [ngModelOptions]="{standalone : true}">
+            </div>
+
+            <div class="row" class="col-md-6">
+              <input type="date" placeholder="date fin de location" [(ngModel)]="contratlocation.dateFin"
+                     [ngModelOptions]="{standalone : true}">
+            </div>
+
+            <div class="row" class="col-md-6">
+              <input type="text" placeholder="reglement" [(ngModel)]="contratlocation.reglement"
+                     [ngModelOptions]="{standalone : true}">
+            </div>
+
+
+            <br>
+            <button type="button" class="btn btn-success" (click)="addContratLocation(contratlocation)" (click)="modal1.close('Save click')">Add</button>
+            <button type="button" class="btn btn-info" (click)="modal1.close('Save click')" >Cancel</button>
+          </form>
+        </div>
+      </ng-template>
+      <div class="row">
+        <div class="card" class="text-center">
+
+
+          <table class="table">
+            <thead style="background-color: rgb(192, 183, 183);">
+            <th>id</th>
+            <th>nom</th>
+            <th>dateDebut</th>
+            <th>dateFin</th>
+            <th>reglement</th>
+            <th>etat</th>
+            <th>Action</th>
+            <th>Validate</th>
+            </thead>
+            <tbody>
+            <tr *ngFor="let contratlocation of listCLocations | paginate :{itemsPerPage:3,currentPage: p}">
+              <td>{{contratlocation.id}}</td>
+              <td>{{contratlocation.nom}}</td>
+              <td>{{contratlocation.dateDebut}}</td>
+              <td>{{contratlocation.dateFin}}</td>
+              <td>{{contratlocation.reglement}}</td>
+              <td>{{contratlocation.etat}}</td>
+              <td><button type="button" class="btn"
+                          (click)="open(mymodal)"> <i class="fa fa-edit" style="font-size:25px;color:green"></i></button>
+                <ng-template #mymodal let-modal>
+                  <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-title">Edit</h4>
+                    <button type="button" class="close" aria-label="Close"
+                            (click)="modal.dismiss('Cross click')">
+                      <span aria-hidden="true" (click)="cancel()">×</span>
+
+                    </button>
+
+                  </div>
+                  <div class="center">
+                    <form>
+                      <div class="modal-body">
+
+                        <div class="row" class="col-md-6">
+                          <input type="text" placeholder="nom de contrat" [(ngModel)]="contratlocation.nom"
+                                 [ngModelOptions]="{standalone : true}">
+                        </div>
+
+                        <div class="row" class="col-md-6">
+                          <input type="date" placeholder="date debut de location" [(ngModel)]="contratlocation.dateDebut"
+                                 [ngModelOptions]="{standalone : true}">
+                        </div>
+
+                        <div class="row" class="col-md-6">
+                          <input type="date" placeholder="date fin de location" [(ngModel)]="contratlocation.dateFin"
+                                 [ngModelOptions]="{standalone : true}">
+                        </div>
+
+                        <div class="row" class="col-md-6">
+                          <input type="text" placeholder="reglement" [(ngModel)]="contratlocation.reglement"
+                                 [ngModelOptions]="{standalone : true}">
+                        </div>
+
+
+
+                      </div>
+
+                      <div class="modal-footer">
+
+                        <button type="button" class="btn btn-info"
+                                (click)="modal.close('Save click')" (click)="cancel()">Cancel</button>
+                        <button class="btn btn-success"(click)="EditContratLocation(contratlocation)" (click)="modal.close('Save click')">Validate</button>
+                      </div>
+                    </form>
+                  </div>
+                </ng-template>
+                <button type="button" class="btn"
+                        (click)="DeleteContratLocation(contratlocation.id)"><i class="fa fa-trash" style="font-size:25px;color:red"></i></button>
+              </td>
+              <td><button type="button" class="btn"><i class="fa fa-check" style="font-size:25px;color:green" (click)="Validate(contratlocation.id)"></i></button>
+              <button type="button" class="btn"><i class="fa fa-close" style="font-size:25px;color:red" (click)="Refuse(contratlocation.id)"></i></button>
+              </td>
+            </tr>
+
+            </tbody>
+            <pagination-controls (pageChange)="p =$event"></pagination-controls>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

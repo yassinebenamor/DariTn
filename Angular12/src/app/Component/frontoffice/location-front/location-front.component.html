@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <!-- Theme Informations -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="author" content="">
+  <!-- Theme Informations -->
+
+  <title>Real Estate-Responsive Theme Page 3</title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="/assets/css/style_index.css">
+  <link rel="stylesheet" href="/assets/css/common-style.css">
+  <!-- Stylesheets -->
+
+  <!-- Icons & Fonts -->
+  <link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.min.css">
+  <!-- Icons & Fonts -->
+
+</head>
+<body id="page-top">
+
+
+<!-- Navigation Section-->
+
+
+<!-- Navigation Section-->
+<nav id="nav" class="container-fluid navbar navbar-default navbar-fixed-top">
+
+  <div class="collapse navbar-collapse" id="toggle">
+    <ul class="nav navbar-nav" style="display:inherit;">
+      <li class="lBorder"><a routerLink="/front" routerLinkActive="active" class="page-scroll">HOME</a></li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="">SELLING
+          <i class="text-right fa fa-angle-up fa-2x"></i>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a routerLink="/achatfront" routerLinkActive="active">My Properties</a></li>
+          <li><a href="second-theme.html">Credit Simulation</a></li>
+          <li><a href="third-theme.html">Estimation</a></li>
+          <li><a href="404.html">Contract</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="">RENTING
+          <i class="text-right fa fa-angle-up fa-2x"></i>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="../../../../index.html">My Rents</a></li>
+          <li><a href="third-theme.html">Guarantees</a></li>
+          <li><a href="second-theme.html">My Appointments</a></li>
+          <li><a href="third-theme.html">Estimation</a></li>
+          <li><a href="404.html">Contract</a></li>
+
+        </ul>
+      </li>
+
+      <li class="lBorder"><a class="page-scroll" href="#contact">FEEDBACK</a></li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="">PAGES
+          <i class="text-right fa fa-angle-up fa-2x"></i>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="../../../../index.html">First theme</a></li>
+          <li><a href="second-theme.html">Second Theme</a></li>
+          <li><a href="third-theme.html">Third Theme</a></li>
+          <li><a href="404.html">Error 404</a></li>
+        </ul>
+      </li>
+      <li class="lBorder"><a class="page-scroll" href="#about">LOGIN</a></li>
+      <li class="lBorder"><a class="page-scroll" href="#contact">SIGN UP</a></li>
+    </ul>
+  </div>
+
+  <!-- Search - end -->
+</nav>
+<!-- End of Navigation section-->
+
+<!-- Intro Section -->
+<header id="intro">
+  <div class="intro-box-index">
+    <div id="header-carousel" class="carousel slide">
+      <ol class="carousel-indicators">
+        <li data-target="#header-carousel" class="active" data-slide-to="0"></li>
+        <li data-target="#header-carousel" data-slide-to="1"></li>
+        <li data-target="#header-carousel" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="item active">
+          <img class="img-responsive" src="/assets/img/carousel/car-img1.jpg">
+          <div class="carousel-caption caption1">
+            <div class="carousel-caption-content">
+              <h1>FIND YOUR PROPERTY</h1>
+              <p>With us no more accommodation problems</p>
+            </div>
+            <div class="carousel-caption-btn">
+              <a href="#about" class="btn btn-custom page-scroll">LEARN MORE</a>
+              <a href="#selling" class="btn btn-carousel page-scroll">GO TO CATALOG</a>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img class="img-responsive" src="/assets/img/carousel/car-img2.jpg">
+          <div class="carousel-caption caption2">
+            <ul class="title">
+              <li class="line"></li>
+              <li>FIND PROPERTIES</li>
+              <li class="line"></li>
+            </ul>
+            <div class="logo-box">
+              <h1><span>R</span>EAL&nbsp;&nbsp;<span>E</span>STATE</h1>
+              <div class="logo"></div>
+            </div>
+            <p>Scroll for More</p>
+            <a href="#selling" class="btn animation page-scroll"><i class="fa fa-angle-down"></i></a>
+          </div>
+        </div>
+        <div class="item">
+          <img class="img-responsive" src="/assets/img/carousel/car-img4.jpg">
+          <div class="carousel-caption caption3">
+            <div class="carousel-caption-content">
+              <p>With us no more accommodation problems</p>
+              <h1>FIND YOUR PROPERTY</h1>
+            </div>
+            <div class="carousel-caption-btn">
+              <a href="#contact" class="btn btn-custom page-scroll">CONTACT US</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- Intro Section -->
+
+<!-- Selling Section -->
+
+
+<!-- End of Selling Section -->
+
+<!-- End of Renting Section -->
+
+<!-- End of Renting Section -->
+
+
+<!-- About Section -->
+
+<!-- End of About Section -->
+
+<!-- Contact Section -->
+
+
+
+<div id="appointment" class="container-fluid selling-index">
+  <div class="container text-center">
+    <ul class="title section-title">
+      <li class="line"></li>
+      <li><h2>APPOINTMENTS</h2></li>
+      <li class="line"></li>
+    </ul>
+    <div class="selling-body">
+      <div class="tab-content">
+        <div id="appartments" class="tab-pane active">
+          <div class="row">
+
+            <div *ngFor='let location of listLocations' class="col-xs-12 col-sm-6 col-md-3">
+              <div class="img-block">
+                <img class="img-responsive" src="/assets/img/selling-img/sel-img7.jpg">
+                <h5>{{location.dateDebut}}</h5>
+                <h5>{{location.dateFin}}</h5>
+                <h5>{{location.typelocation}}</h5>
+                <h5>{{location.etat}}</h5>
+                <button class="btn" (click)="DeleteLocation(location.id)"><i class="fa fa-trash"></i></button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End of Contact Section -->
+
+<!-- Footer Section -->
+<footer>
+  <div class="row container-fluid">
+    <div class="container">
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <h5><span></span> REAL ESTATE</h5>
+        <ul>
+          <li><a class="page-scroll" href="#selling">Selling</a></li>
+          <li><a class="page-scroll" href="#renting">Renting</a></li>
+          <li><a class="page-scroll" href="#about">Leasehold</a></li>
+          <li><a class="page-scroll" href="#about">About Us</a></li>
+          <li><a data-toggle="modal" href="#contact-form">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <h5>FOLLOW US</h5>
+        <ul>
+          <li><a href=""><i class="fa fa-facebook"></i> Facebook</a></li>
+          <li><a href=""><i class="fa fa-twitter"></i> Twitter</a></li>
+          <li><a href=""><i class="fa fa-google-plus"></i> Google Plus</a></li>
+          <li><a href=""><i class="fa fa-linkedin"></i> Linkedin</a></li>
+          <li><a href=""><i class="fa fa-instagram"></i> Instagram</a></li>
+        </ul>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <h5>THIS THEMES PAGES</h5>
+        <ul>
+          <li><a href="../../../../index.html">First theme</a></li>
+          <li><a href="second-theme.html">Second Theme</a></li>
+          <li><a href="third-theme.html">Third Theme</a></li>
+          <li><a href="404.html">Error 404</a></li>
+        </ul>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <h5>SUSCRIBE TO OUR RENTLETTER</h5>
+        <p>Enter your email adresse to receive our RENTletter!</p>
+        <form class="form-horizontal">
+          <div class="form-group">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Enter Your E-mail">
+              <span class="input-group-btn">
+                   <button type="submit" class="btn"><i class="fa fa-send-o"></i></button>
+                 </span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="footer-ending text-center">
+    <p>&copy; Real Estate Template 2018</p>
+  </div>
+</footer>
+<!-- End of Footer Section -->
+
+<!-- Modal Boxes -->
+<!-- house description-->
+
+
+<!-- End of house description-->
+<!-- House Pictures-->
+<div id="pictures" class="modal fade main-modal" tabindex="-1" aria-hidden="true">
+  <div class="container-fluid row">
+    <div class="modal-content col-xs-12 col-sm-8 col-sm-push-2">
+      <div class="modal-content-header">
+        <i class="fa fa-times animation" data-dismiss="modal"></i>
+      </div>
+      <div class="modal-content-body">
+        <div id="houses-pictures" class="carousel slide">
+          <div class="carousel-inner">
+            <div class="item active">
+              <img class="img-responsive img-thumbnail" src="/assets/img/selling-img/sel-img1.jpg">
+            </div>
+            <div class="item">
+              <img class="img-responsive img-thumbnail" src="/assets/img/selling-img/sel-img2.jpg">
+            </div>
+            <div class="item">
+              <img class="img-responsive img-thumbnail" src="/assets/img/selling-img/sel-img3.jpg">
+            </div>
+            <div class="item">
+              <img class="img-responsive img-thumbnail" src="/assets/img/selling-img/sel-img4.jpg">
+            </div>
+            <div class="item">
+              <img class="img-responsive img-thumbnail" src="/assets/img/selling-img/sel-img5.jpg">
+            </div>
+            <div class="item">
+              <img class="img-responsive img-thumbnail" src="/assets/img/selling-img/sel-img6.jpg">
+            </div>
+          </div>
+          <a class="direction direction-left animation" href="#houses-pictures" data-slide="prev">
+            <i class="fa fa-chevron-left"></i>
+          </a>
+          <a class="direction direction-right animation" href="#houses-pictures" data-slide="next">
+            <i class="fa fa-chevron-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End of House Pictures-->
+<!-- End of Modal Boxes -->
+
+<!-- jQuery-->
+<script src="/assets/js/jquery.min.js"></script>
+<!-- Bootstrap Core Javascript-->
+<script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+<!-- Plugins -->
+<script src="/assets/js/jquery.easing.min.js"></script>
+<script src="/assets/js/script.js"></script>
+</body>
+</html>

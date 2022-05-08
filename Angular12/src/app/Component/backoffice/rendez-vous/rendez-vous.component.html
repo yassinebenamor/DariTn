@@ -1,0 +1,166 @@
+<div class="row">
+  <div class="row">
+    <div class="col-md-12">
+      <button class="btn btn-round btn-sm btn-success" (click)="open(mymodal1)"><i class="fa fa-plus"></i></button>
+      <br><br>
+      <ng-template #mymodal1 let-modal1>
+        <div class="modal-header">
+          <h4 class="modal-title" >Add new rendezvous</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal1.dismiss('Cross click')">
+            <span aria-hidden="true" (click)="cancel()">×</span>
+          </button>
+
+        </div>
+        <div class="center">
+          <form>
+            <div class="form-group">
+              <label>Date</label>
+              <input type="date" [(ngModel)]="rdv.date" [ngModelOptions]="{standalone : true}">
+            </div>
+            <div class="form-group">
+              <label>heur</label>
+              <input type="number" [(ngModel)]="rdv.heur" [ngModelOptions]="{standalone : true}">
+              <label>h</label>
+            </div>
+
+            <div class="form-group">
+              <label>Region</label>
+              <select [(ngModel)]="rdv.region" [ngModelOptions]="{standalone : true}">
+                <option value="Tunis">Tunis</option>
+                <option value="Bizerte">Bizerte</option>
+                <option value="Ariana">Ariana</option>
+                <option value="Manouba">Manouba</option>
+                <option value="BenArous">Ben Arous</option>
+                <option value="Zaghouan">Zaghouan</option>
+                <option value="Nabeul">Nabeul</option>
+                <option value="Jendouba">Jendouba</option>
+                <option value="Beja">Beja</option>
+                <option value="Kef">Kef</option>
+                <option value="Siliana">Siliana</option>
+                <option value="Sousse">Sousse</option>
+                <option value="Monastir">Monastir</option>
+                <option value="Mahdia">Mahdia</option>
+                <option value="Kairouan">Kairouan</option>
+                <option value="Kasserine">Kasserine</option>
+                <option value="SidiBouzid">SidiBouzid</option>
+                <option value="Gabes">Gabes</option>
+                <option value="Medenine">Medenine</option>
+                <option value="Tataouine">Tataouine</option>
+                <option value="Tozeur">Tozeur</option>
+                <option value="Gafsa">Gafsa</option>
+                <option value="Kebili">Kebili</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Lieu</label>
+              <input type="text" class="form-control" name="status" [(ngModel)]="rdv.lieu">
+            </div>
+            <br>
+            <button type="button" class="btn btn-success" (click)="addrdvs(rdv)" (click)="modal1.close('Save click')">Add</button>
+            <button type="button" class="btn btn-info" (click)="modal1.close('Save click')" >Cancel</button>
+          </form>
+        </div>
+      </ng-template>
+      <div class="row">
+        <div class="card" class="text-center">
+          <table class="table">
+            <thead style="background-color: rgb(192, 183, 183);">
+            <th>Date</th>
+            <th>Region</th>
+            <th>Heur</th>
+            <th>lieu</th>
+            <th>etat</th>
+            <th>Action</th>
+            <th>State</th>
+            </thead>
+            <tbody>
+            <tr *ngFor='let rdv of listrdvs'>
+              <td>{{rdv.date}}</td>
+              <td>{{rdv.region}}</td>
+              <td>{{rdv.heur}}</td>
+              <td>{{rdv.lieu}}</td>
+              <td>{{rdv.etat}}</td>
+              <td><button type="button" class="btn btn-outline-primary"
+                          (click)="open(mymodal)"><i class="fa fa-edit"></i></button>
+                <ng-template #mymodal let-modal>
+                  <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-title">Edit</h4>
+                    <button type="button" class="close" aria-label="Close"
+                            (click)="modal.dismiss('Cross click')">
+                      <span aria-hidden="true" (click)="cancel()">×</span>
+
+                    </button>
+
+                  </div>
+                  <div>
+                    <form>
+                      <div class="modal-body">
+                        <div class="form-group">
+                          <label>Date</label>
+                          <input type="date" [(ngModel)]="rdv.date" [ngModelOptions]="{standalone : true}">
+                        </div>
+                        <div class="form-group">
+                          <label>heur</label>
+                          <input type="number" [(ngModel)]="rdv.heur" [ngModelOptions]="{standalone : true}">
+                          <label>h</label>
+                        </div>
+
+                        <div class="form-group">
+                          <label>Region</label>
+                          <select [(ngModel)]="rdv.region" [ngModelOptions]="{standalone : true}">
+                            <option value="Tunis">Tunis</option>
+                            <option value="Bizerte">Bizerte</option>
+                            <option value="Ariana">Ariana</option>
+                            <option value="Manouba">Manouba</option>
+                            <option value="BenArous">Ben Arous</option>
+                            <option value="Zaghouan">Zaghouan</option>
+                            <option value="Nabeul">Nabeul</option>
+                            <option value="Jendouba">Jendouba</option>
+                            <option value="Beja">Beja</option>
+                            <option value="Kef">Kef</option>
+                            <option value="Siliana">Siliana</option>
+                            <option value="Sousse">Sousse</option>
+                            <option value="Monastir">Monastir</option>
+                            <option value="Mahdia">Mahdia</option>
+                            <option value="Kairouan">Kairouan</option>
+                            <option value="Kasserine">Kasserine</option>
+                            <option value="SidiBouzid">SidiBouzid</option>
+                            <option value="Gabes">Gabes</option>
+                            <option value="Medenine">Medenine</option>
+                            <option value="Tataouine">Tataouine</option>
+                            <option value="Tozeur">Tozeur</option>
+                            <option value="Gafsa">Gafsa</option>
+                            <option value="Kebili">Kebili</option>
+                          </select>
+                        </div>
+
+                        <div class="form-group">
+                          <label>Type de location</label>
+                          <input type="text" class="form-control" name="status" [(ngModel)]="rdv.lieu" [ngModelOptions]="{standalone : true}">
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+
+                        <button type="button" class="btn btn-info"
+                                (click)="modal.close('Save click')" (click)="cancel()">Cancel</button>
+                        <button class="btn btn-success"(click)="Editrdv(rdv)" (click)="modal.close('Save click')">Validate</button>
+                      </div>
+                    </form>
+                  </div>
+                </ng-template>
+                <button type="button" class="btn btn-outline-danger"
+                        (click)="Deleterdv(rdv.id)"><i class="fa fa-trash"></i></button>
+              </td>
+
+              <td><button type="button" class="btn"><i class="fa fa-check" style="font-size:25px;color:green"></i></button>
+              <button type="button" class="btn"><i class="fa fa-close" style="font-size:25px;color:red"></i></button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

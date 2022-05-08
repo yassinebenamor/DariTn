@@ -1,0 +1,118 @@
+<div class="row">
+  <div class="row">
+    <div class="col-md-12">
+      <button class="btn" (click)="open(mymodal1)"><i class="fa fa-plus" style="color:blue"></i></button>
+      <button class="btn" routerLink="/depotpdf" routerLinkActive="active"><i class="fa fa-file-pdf-o"></i></button>
+      <br><br>
+      <ng-template #mymodal1 let-modal1>
+        <div class="modal-header">
+          <h4 class="modal-title" >Add new Contrat</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal1.dismiss('Cross click')">
+            <span aria-hidden="true" (click)="cancel()">×</span>
+          </button>
+
+        </div>
+        <div class="center">
+          <form enctype="multipart/form-data">
+            <div>
+              <label>mois de loyers:</label>
+              <input type="number"  [(ngModel)]="depot.moisLoyers" min="1">
+            </div>
+            <div>
+              <label>Somme payé:</label>
+              <input type="number"  [(ngModel)]="depot.Somme" >
+            </div>
+            <div>
+              <label>Numero de payment:</label>
+              <input type="number"  [(ngModel)]="depot.numeroPayment" >
+            </div>
+            <br>
+            <div>
+              <label>CAUTION</label>
+              <input type="file" accept="image/*" [(ngModel)]="depot.caution" [ngModelOptions]="{standalone : true}">
+            </div>
+            <br>
+
+
+            <br>
+            <button type="button" class="btn btn-success" data-dismiss="modal" (click)="addDepot(depot,depot.caution);">Add</button>
+            <button type="button" class="btn btn-info" data-dismiss="modal"  >Cancel</button>
+          </form>
+        </div>
+      </ng-template>
+      <div class="row">
+        <div class="card" class="text-center">
+
+
+          <table class="table">
+            <thead style="background-color: rgb(192, 183, 183);">
+            <th>id</th>
+            <th>nom</th>
+            <th>dateDebut</th>
+            <th>dateFin</th>
+            <th>reglement</th>
+            <th>etat</th>
+            <th>Action</th>
+            <th>Validate</th>
+            </thead>
+            <tbody>
+            <tr *ngFor="let depot of listDepot | paginate :{itemsPerPage:3,currentPage: p}">
+              <td>{{depot.id}}</td>
+              <td>{{depot.moisLoyers}}</td>
+              <td>{{depot.Somme}}</td>
+              <td>{{depot.numeroPayment}}</td>
+              <td>{{depot.editedAt}}</td>
+              <td>{{depot.etat}}</td>
+              <td><button type="button" class="btn"
+                          (click)="open(mymodal)"> <i class="fa fa-edit" style="font-size:25px;color:green"></i></button>
+                <ng-template #mymodal let-modal>
+                  <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-title">Edit</h4>
+                    <button type="button" class="close" aria-label="Close"
+                            (click)="modal.dismiss('Cross click')">
+                      <span aria-hidden="true" (click)="cancel()">×</span>
+
+                    </button>
+
+                  </div>
+                  <div class="center">
+                    <form enctype="multipart/form-data">
+                      <div>
+                        <label>mois de loyers:</label>
+                        <input type="number"  [(ngModel)]="depot.moisLoyers" min="1">
+                      </div>
+                      <div>
+                        <label>Somme payé:</label>
+                        <input type="number"  [(ngModel)]="depot.Somme" >
+                      </div>
+                      <div>
+                        <label>Numero de payment:</label>
+                        <input type="number"  [(ngModel)]="depot.numeroPayment" >
+                      </div>
+                      <br>
+                      <div>
+                        <label>CAUTION</label>
+                        <input type="file" accept="image/*" [(ngModel)]="depot.caution" [ngModelOptions]="{standalone : true}">
+                      </div>
+                      <br>
+                      <button type="button" class="btn btn-success" data-dismiss="modal" (click)="addDepot(depot,depot.caution);">Add</button>
+                      <button type="button" class="btn btn-info" data-dismiss="modal" >Cancel</button>
+                    </form>
+                  </div>
+                </ng-template>
+                <button type="button" class="btn"
+                        (click)="DeleteContratLocation(depot.id)"><i class="fa fa-trash" style="font-size:25px;color:red"></i></button>
+              </td>
+              <td><button type="button" class="btn"><i class="fa fa-check" style="font-size:25px;color:green"></i></button>
+                <button type="button" class="btn"><i class="fa fa-close" style="font-size:25px;color:red"></i></button>
+              </td>
+            </tr>
+
+            </tbody>
+            <pagination-controls (pageChange)="p =$event"></pagination-controls>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
