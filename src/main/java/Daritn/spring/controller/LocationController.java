@@ -1,7 +1,6 @@
 package Daritn.spring.controller;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import Daritn.spring.entity.DepotDeGaranties;
+import Daritn.spring.entity.EnumeratedEtat;
 import Daritn.spring.entity.Location;
 import Daritn.spring.service.LocationService;
 
@@ -30,44 +31,56 @@ public class LocationController {
 	
 	@GetMapping("/")
 	@ResponseBody
-	public List<Location> getContratLs()
+	public List<Location> getLocation()
 	{	
 		return LocationService.getLocations();
 	}
 	
 	@GetMapping(value="/retrievelocation")
 	@ResponseBody
-	public Location RetrieveContratL(@RequestParam Long id)
+	public Location RetrieveLocation(@RequestParam Long id)
 	{
-		Long idd=1L;
-		return LocationService.retrieveLocation(idd);
+		return LocationService.retrieveLocation(id);
 	}
 	
 	@PostMapping(value = "/saveLocation")
-	public Location AddContratL(@RequestBody Location Location)
-	{	
+	public Location AddLocation(@RequestBody Location Location)
+	{
+		Location.setEtat(EnumeratedEtat.Waiting);
 		return LocationService.addLocation(Location);
 	}
 	@PutMapping(value = "/updateLocation")
-	public Location EditContratL(@RequestBody Location Location)
+	public Location EditLocation(@RequestBody Location Location)
 	{	
 		return LocationService.EditLocation(Location);
 	}
 	
 	@DeleteMapping(value = "/deleteLocation")
-	public void DeleteContratL(@RequestParam Long id)
+	public void DeleteLocation(@RequestParam Long id)
 	{	
-		LocationService.DeleteContratLocation(id);
+		LocationService.DeleteLocation(id);
 	}
+	
+	@PutMapping(value="/validate")
+	public int Validate(@RequestParam Long id)
+	{
+		return LocationService.Validate(EnumeratedEtat.Confirmed, id);	
+	}
+	@PutMapping(value="/refuse")
+	public int Refuse(@RequestParam Long id)
+	{
+		return LocationService.Validate(EnumeratedEtat.Refused, id);	
+	}
+	
 	@GetMapping("/stat")
 	@ResponseBody
-	public List<String> getStat()
+	public List<Integer> getStat()
 	{	
-		List<String> list=new ArrayList<String>(); 
-		list.add("Vacances:"+String.valueOf(LocationService.Stat("Vacances")*100)+"%");
-		list.add("Temporraire:"+String.valueOf(LocationService.Stat("Temporraire")*100)+"%");
-		list.add("Year:"+String.valueOf(LocationService.Stat("Year")*100)+"%");
-		list.add("Long_Period:"+String.valueOf(LocationService.Stat("Long_Period")*100)+"%");
+		List<Integer> list=new ArrayList<Integer>(); 
+		list.add(LocationService.Stat("Vacances"));
+		list.add(LocationService.Stat("Temporraire"));
+		list.add(LocationService.Stat("Year"));
+		list.add(LocationService.Stat("Long_Period"));
 		return list;	
 	}
 	

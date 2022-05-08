@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import Daritn.spring.entity.EnumeratedEtat;
 import Daritn.spring.entity.Location;
 import Daritn.spring.repository.LocationRepository;
 
@@ -23,12 +24,14 @@ public class LocationService {
 		return locations;
 	}
 	public Location addLocation(Location l) {
+		l.setEtat(EnumeratedEtat.Waiting);
 		return locationRepository.save(l);
 	}
 	public Location EditLocation(Location l) {
+		l.setEtat(EnumeratedEtat.Waiting);
 		return locationRepository.save(l);
 	}
-	public void DeleteContratLocation(Long id) {
+	public void DeleteLocation(Long id) {
 		locationRepository.deleteById(id);
 	}
 	public Location retrieveLocation(Long id) {
@@ -36,7 +39,11 @@ public class LocationService {
 		System.out.println("Location :" + location);
 		return location; 
 	}
-	public float Stat(String type) {
+	public int Validate(EnumeratedEtat etat,Long id)
+	{
+		return locationRepository.updateEtat(etat, id);
+	}
+	public Integer Stat(String type) {
 		return locationRepository.Stat(type);
 	}
 }

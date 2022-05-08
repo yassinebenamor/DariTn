@@ -2,6 +2,7 @@ package Daritn.spring.entity;
 
 import java.io.Serializable;
 
+
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -16,7 +17,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Future;
-import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
@@ -44,6 +44,10 @@ public class ContratLocation implements Serializable {
 	@Column(name="idContrat")
 	private Long id;
 	
+	@Size(min = 1,max = 255)
+	@Column(name="nom")
+	private String nom;
+	
 	@Temporal (TemporalType.DATE)
 	@Column(name="Date_Debut",nullable =true)
 	private Date dateDebut;
@@ -58,26 +62,10 @@ public class ContratLocation implements Serializable {
 	@Column(name="Reglement",length = 1500,nullable =false)
 	private String reglement;
 	
-	@PositiveOrZero(message = "Le prix du loyer doit etre un nombre positif")
-	@Column(name="Prix_Loyer",nullable =false)
-	private int prixloyer;
-	
 	@Enumerated(EnumType.STRING)
 	private EnumeratedEtat etat;
 	
-	/*One To One Unidirectionnelle*/
 	@OneToOne
 	private User Locataire; 
-	
-	/* One To One Unidirectionnelle */
-	@OneToOne
-	private Annonce Annonce;
-	
-	
-
-
-	
-	
-	
 	
 }

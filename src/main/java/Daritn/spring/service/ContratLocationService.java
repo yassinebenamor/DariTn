@@ -6,9 +6,8 @@ import java.util.List;
 
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -25,16 +24,25 @@ public class ContratLocationService {
 	private ContratLocationRepository contratLocationRepository;
 	
 	public List<ContratLocation> getContratLs(){
-		List<ContratLocation> Contrats=contratLocationRepository.findAll();
-		for (ContratLocation Contrat: Contrats) {
+		List<ContratLocation> ContratLocations=contratLocationRepository.findAllContrat();
+		for (ContratLocation Contrat: ContratLocations) {
 			System.out.println("Contrat :" + Contrat);
 		}
-		return Contrats;
+		return ContratLocations;
+	}
+	public List<ContratLocation> getAllContratLs(){
+		List<ContratLocation> ContratLocations=contratLocationRepository.findAll();
+		for (ContratLocation Contrat: ContratLocations) {
+			System.out.println("Contrat :" + Contrat);
+		}
+		return ContratLocations;
 	}
 	public ContratLocation addContratLocation(ContratLocation cl) {
+		cl.setEtat(EnumeratedEtat.Waiting);
 		return contratLocationRepository.save(cl);
 	}
 	public ContratLocation EditContratLocation(ContratLocation cl) {
+		cl.setEtat(EnumeratedEtat.Waiting);
 		return contratLocationRepository.save(cl);
 	}
 	public void DeleteContratLocation(Long id) {
@@ -45,22 +53,17 @@ public class ContratLocationService {
 		System.out.println("Contrat de Location :" + ContratLocation);
 		return ContratLocation; 
 	}
-	public List<ContratLocation> getAllByIdUser(Long id){
-		List<ContratLocation> ContratLocations=contratLocationRepository.findAllContrat(id);
-		for (ContratLocation ContratLocation: ContratLocations) {
-			System.out.println("Contrat :" + ContratLocation);
-		}
-		return ContratLocations;
-	}
 	public List<ContratLocation> TrieByEtatPrix(){
-		return contratLocationRepository.findAll(Sort.by("prixloyer").descending().and(Sort.by("etat")));
+		return contratLocationRepository.findAll(Sort.by("dateDebut").descending().and(Sort.by("etat")));
 	}
+	
 	public int Validate(EnumeratedEtat etat,Long id)
 	{
 		return contratLocationRepository.updateEtat(etat, id);
 	}
-	public Page<ContratLocation> getContratLsUser(int iduser,int page, int size)
+	public List<ContratLocation> getContratLsUser(int iduser)
 	{
-		 return contratLocationRepository.findAllByLocataires(iduser, PageRequest.of(page,size));
+		 return contratLocationRepository.findAllByLocataires(iduser);
 	}
+
 }

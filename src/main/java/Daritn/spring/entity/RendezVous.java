@@ -1,9 +1,11 @@
 package Daritn.spring.entity;
 
+import java.io.Serializable;
+
 import java.util.Date;
 
 
-import javax.validation.constraints.Future;
+import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
@@ -33,22 +35,27 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @Table( name = "RendezVous")
-public class RendezVous {
+public class RendezVous implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	@Column(name="idContrat")
-	private Long id;
+	private int id;
 	
-	@Future(message = "La date du rendez-vous doit être supperieur a celle d'aujourd'hui ")
+	@FutureOrPresent(message = "La date du rendez-vous doit être supperieur a celle d'aujourd'hui ")
 	@Temporal (TemporalType.DATE)
 	@Column(name="Date",nullable =false)
 	private Date date;
 	
 	@Min(0)
 	@Max(24)
-	@Column(name="time",nullable =false)
-	private float time;
+	@Column(name="heur",nullable =false)
+	private int heur;
 	
 	@Enumerated(EnumType.STRING)
 	private EnumeratedRegion region;

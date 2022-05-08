@@ -1,9 +1,9 @@
 package Daritn.spring.controller;
 
 import java.util.Date;
+
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import Daritn.spring.config.SmsConfig;
 import Daritn.spring.entity.ContratLocation;
 import Daritn.spring.entity.EnumeratedEtat;
 import Daritn.spring.service.ContratLocationService;
@@ -25,7 +26,6 @@ import Daritn.spring.service.ContratLocationService;
 public class ContratLocationController {
 	@Autowired
 	private ContratLocationService contratLocationService;
-	
 
 	
 	@GetMapping("/")
@@ -33,6 +33,12 @@ public class ContratLocationController {
 	public List<ContratLocation> getContratLs()
 	{	
 		return contratLocationService.getContratLs();
+	}
+	@GetMapping("/getAllContrat")
+	@ResponseBody
+	public List<ContratLocation> getAllContratLs()
+	{	
+		return contratLocationService.getAllContratLs();
 	}
 	
 	@GetMapping(value="/retrievecl")
@@ -55,10 +61,17 @@ public class ContratLocationController {
 	{	
 		return contratLocationService.EditContratLocation(clo);
 	}
+	@PutMapping(value = "/updateContrat")
+	public ContratLocation EditContrat(@RequestBody ContratLocation clo,@RequestParam long id)
+	{	
+		clo.setId(id);
+		return contratLocationService.EditContratLocation(clo);
+	}
 	
 	@PutMapping(value="/validate")
 	public int Validate(@RequestParam Long id)
 	{
+
 		return contratLocationService.Validate(EnumeratedEtat.Confirmed, id);	
 	}
 	@PutMapping(value="/refuse")
@@ -71,27 +84,19 @@ public class ContratLocationController {
 	{	
 		contratLocationService.DeleteContratLocation(id);
 	}
-	
-	@GetMapping(value="/retrieve")
-	@ResponseBody
-	public List<ContratLocation> GetAllByIdUser(@RequestParam Long id)
-	{
-		return contratLocationService.getAllByIdUser(id);
-	}
-	
-	@GetMapping(value="/orderbyetatprix")
+	@GetMapping(value="/orderbyetatdate")
 	@ResponseBody
 	public List<ContratLocation> SortByEtat()
 	{
 		return contratLocationService.TrieByEtatPrix();
 	}
 	
-	@GetMapping(value="/rp")
+	
+	@GetMapping(value="/contratbyuser")
 	@ResponseBody
-	public Page<ContratLocation> getContratsByLocataire(@RequestParam int id,@RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "4") int size)
+	public List<ContratLocation> getContratsByLocataire(@RequestParam int id)
 	{
-		return contratLocationService.getContratLsUser(id,page,size);
+		return contratLocationService.getContratLsUser(id);
 	}
 	
 }

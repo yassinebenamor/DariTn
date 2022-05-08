@@ -1,13 +1,82 @@
 package Daritn.spring.service;
+
+import java.io.IOException;
+
+import java.net.MalformedURLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
 import Daritn.spring.entity.Estimation;
-
-
+import Daritn.spring.entity.MaisonALouer;
 @Service
 public class EstimationService {
-	
-	
+	public int getEstimationLocation(Estimation e)
+	{
+		double Estimation;
+		if(e.getRegion().toString().equals("Tunis") || e.getRegion().toString().equals("Sfax")) {
+			Estimation=1.5;
+		}else if(e.getRegion().toString().equals("Nabeul") || e.getRegion().toString().equals("Sousse") || e.getRegion().toString().equals("Mahdia") || e.getRegion().toString().equals("Monastir")) {
+			if(e.isPeriode()) {
+				Estimation=1.45;
+			}else {
+				Estimation=1.25;
+			}
+		}
+			else if(e.getRegion().toString().equals("Bizerte")) {
+				if(e.isPeriode())
+					Estimation=1.3;
+				else
+					Estimation=1.15;
+		}else if(e.getRegion().toString().equals("Ariana") || e.getRegion().toString().equals("Manouba") || e.getRegion().toString().equals("BenArous")){
+			Estimation=1.35;
+		}else {
+			Estimation=1;
+		}
+		if(e.isAppartement()==true) {
+			if(e.isStanding())
+			{
+				Estimation*=e.getSurface()*13;
+			}
+			else {
+				Estimation*=e.getSurface()*10;
+			}
+		}
+		else {
+			if(e.isStanding())
+			{
+				Estimation*=e.getSurface()*17.5;
+			}
+			else
+			{
+				Estimation*=e.getSurface()*15;
+			}
+		}
+		
+		if(e.getAnnee()<2000)
+		{
+			Estimation-=105;
+		}
+		if(e.isMeubles())
+		{
+			Estimation+=85;
+		}
+		if(e.isTravaux())
+		{
+			Estimation-=70;
+		}
+		if(e.getNbchambres()==1) Estimation+=25;
+		if(e.getNbchambres()==2 || e.getNbchambres()==3) Estimation+=e.getNbchambres()*40;
+		if(e.getNbchambres()>3) Estimation+=e.getNbchambres()*50;
+		return (int)(Estimation-Estimation%10);
+	}
+
+
 	public Double estimationAchat(Estimation estimation) {
 		
 		Double e;
@@ -62,6 +131,50 @@ public class EstimationService {
 		  
 			  
 		  return e;	
+	}
+	
+	public List<MaisonALouer> getPage() throws MalformedURLException, IOException
+	{
+		int i=0;
+		List<MaisonALouer> ListMaison = new ArrayList<>();
+		List<MaisonALouer> subListMaison = new ArrayList<>();
+		String urlAriana="http://www.tunisie-annonce.com/AnnoncesImmobilier.asp?rech_cod_pay=TN&rech_cod_vil=10201&rech_cod_loc=1020101";
+		Document doc = Jsoup.connect(urlAriana).get();
+		Elements body = doc.select("tbody");
+		for(Element tr : body.select("tr.Tableau1"))
+		{
+			MaisonALouer MAL = new MaisonALouer();
+			for(Element td : tr.select("td"))
+			{
+				
+				if(!td.text().isEmpty()) {
+					//System.out.println("------------------");
+					if(i==0){MAL.setRegion(td.text().substring(2, td.text().length()));}
+					if(i==1){MAL.setNature(td.text().substring(2, td.text().length()));}
+					
+					if(i==2){MAL.setType(td.text().substring(2, td.text().length()));}
+					
+					if(i==4){MAL.setPrix(td.text());}
+					if(i==5){MAL.setModifier(td.text().substring(2, td.text().length()));
+					ListMaison.add(MAL);
+					}/*
+					System.out.println(i);
+					System.out.println(td.text());
+					System.out.println("------------------");
+					 */
+					i++;
+					}
+			}
+		i=0;
+		}
+	for(int j=0;j<ListMaison.size();j++)
+	{
+		if(ListMaison.get(j).getNature().equals("Location")) {
+			subListMaison.add(ListMaison.get(j));
+		}
+		
+	}
+		return subListMaison;
 	}
 
 }
