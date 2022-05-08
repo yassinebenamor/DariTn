@@ -28,6 +28,7 @@ public class ContratAchatService  {
 	}
 	
 	public ContratAchat addContratAchat(ContratAchat ca) {
+
 		return ContratAchatRepository.save(ca);
 
 	}
@@ -49,17 +50,16 @@ public class ContratAchatService  {
 		ContratAchatRepository.deleteById(id);
 		
 	}
-	 public List<ContratAchat> SearchContratAchat(String etat, String regle) {
-	        if (etat != null) {
-	            return ContratAchatRepository.search(etat, regle);
+	 public List<ContratAchat> SearchContratAchat(String etat, String reglement) {
+	        if (etat != null && reglement !=null) {
+	            return ContratAchatRepository.search(etat, reglement);
 	        }
 	        return ContratAchatRepository.findAll();
 	    }
-		public List<ContratAchat> retrieveAllJContratAchat(Long id) {
-			List<ContratAchat> ContratAchats= ContratAchatRepository.findAllContrat(id);
-			for (ContratAchat ContratAchat: ContratAchats) {
-				System.out.println("Achat :" + ContratAchat);
-			}
+	 
+		public List<ContratAchat> retrieveAllJContratAchatByUserID(Long id) {
+			List<ContratAchat> ContratAchats= ContratAchatRepository.findAllContratByUserID(id);
+			
 			return ContratAchats;
 		}
 		public int Validate(EnumeratedEtat etat,Long id)
@@ -67,7 +67,7 @@ public class ContratAchatService  {
 			return ContratAchatRepository.updateEtat(etat, id);
 		}
 		
-		public float statContrat(String etat)
+		public Integer statContrat(String etat)
 		{
 			return ContratAchatRepository.statContrat(etat);
 		}

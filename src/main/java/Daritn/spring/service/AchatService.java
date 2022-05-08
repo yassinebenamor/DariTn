@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import Daritn.spring.entity.Achat;
+import Daritn.spring.entity.EnumeratedEtat;
 import Daritn.spring.repository.AchatRepository;;
 
 
@@ -43,5 +44,11 @@ public class AchatService {
 	achatRepository.deleteById(id);
 		
 	}
+	
+	public int Validate(EnumeratedEtat etat,Long id)
+	{
+		return achatRepository.updateEtat(etat, id);
+	}
+	
 }
 

@@ -1,6 +1,7 @@
 package Daritn.spring.entity;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,12 +18,14 @@ import javax.validation.constraints.PositiveOrZero;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Table( name = "SimulationCredit")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@ToString
 public class SimulationCredit implements Serializable {
 
 	/**
@@ -52,6 +55,9 @@ public class SimulationCredit implements Serializable {
 	@Column(name="annee",nullable =false)
 	private int annee;
 	
+	
+	private float mensualite;
+	
 	@OneToOne
 	private User acheteur;
 
@@ -77,11 +83,7 @@ public class SimulationCredit implements Serializable {
 
 	public void setAcheteur(User acheteur) {this.acheteur = acheteur;}
 
-	@Override
-	public String toString() {
-		return "SimulationCredit [id=" + id + ", salaire=" + salaire + ", autofinancement=" + autofinancement
-				+ ", plafond=" + plafond + ", annee=" + annee + ", acheteur=" + acheteur + "]";
-	}
+	
 
 	
 	
@@ -92,7 +94,6 @@ public class SimulationCredit implements Serializable {
 		this.annee = annee;
 		this.acheteur = acheteur;
 	}
-
 	
 	
 }

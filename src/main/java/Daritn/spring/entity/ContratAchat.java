@@ -17,6 +17,7 @@ import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -26,6 +27,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@ToString
 public class ContratAchat implements Serializable {
 	/**
 	 * 
@@ -49,12 +51,12 @@ public class ContratAchat implements Serializable {
 	
 	@Enumerated(EnumType.STRING)
     private EnumeratedEtat etat;
+	
     
 	@OneToOne
 	private User acheteur;
 	
-	@OneToOne
-	private Annonce annonce;
+
 
 	public Long getId() {return id;}
 
@@ -70,23 +72,16 @@ public class ContratAchat implements Serializable {
 
 	public void setAcheteur(User acheteur) {this.acheteur = acheteur;}
 
-	public Annonce getAnnonce() {return annonce;}
 
-	public void setAnnonce(Annonce annonce) {this.annonce = annonce;}
 
-	@Override
-	public String toString() {
-		return "ContratAchat [Id=" + id + ", dateAchat=" + dateAchat + ", reglement=" + reglement + ", acheteur=" + acheteur
-				+ ", annonce=" + annonce + "]";
-	}
 
 	public ContratAchat(Long id) {
-		super();
+	super();
 		this.id = id;
 	}
 
 	
-
+    
 	
 
 }
