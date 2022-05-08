@@ -15,4 +15,8 @@ public interface AnnonceRepository extends JpaRepository<Annonce, Long>{
 			public List<Annonce> RechercheMulti(String lieu,double prix); 
 	@Query(value="SELECT * FROM `annonce` WHERE lieu LIKE %?1% AND prix LIKE %?2% AND descirption LIKE %?3%",nativeQuery =true)
 	public List<Annonce> GetAnnonce(double idAnnonce);
+	@Query(value="SELECT * FROM `annonce` WHERE achat = 1",nativeQuery =true)
+	public List<Annonce> GetAnnonceAchat();
+	@Query(value="SELECT * FROM `annonce` WHERE achat = 0",nativeQuery =true)
+	public List<Annonce> GetAnnonceLocation();
 }

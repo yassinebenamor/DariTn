@@ -42,6 +42,16 @@ public class AnnonceController {
 public List<Annonce> getAllAnnoncesByTitre(){
 	return annonceService.getAllAnnoncesByTitre();
 }
+@GetMapping("/getAllAnnoncesAchat")
+@ResponseBody
+public List<Annonce> getAllAnnoncesAchat(){
+	return annonceService.getAllAnnoncesAchat();
+}
+@GetMapping("/getAllAnnoncesLocation")
+@ResponseBody
+public List<Annonce> getAllAnnoncesLocation(){
+	return annonceService.getAllAnnoncesLocation();
+}
 @GetMapping("/getAllAnnoncesByPrix")
 @ResponseBody
 public List<Annonce> getAllAnnoncesByPrix(){
@@ -49,7 +59,7 @@ public List<Annonce> getAllAnnoncesByPrix(){
 }
 @DeleteMapping("/suppAnnonce/{Annonce-id}")
 @ResponseBody
-public void removefavoris(@PathVariable("Annonce-id") Long idAnnonce) {
+public void removeAnnonce(@PathVariable("Annonce-id") Long idAnnonce) {
 annonceService.deleteAnnonceById(idAnnonce);
 }
 
