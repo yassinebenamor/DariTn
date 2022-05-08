@@ -1,0 +1,125 @@
+<div class="row">
+  <div class="row">
+    <div class="col-md-12">
+      <button class="btn btn-round btn-sm btn-success" (click)="open(mymodal1)">Add new Contrat</button>
+      <button class="btn btn-success btn-block" routerLink="/exportpdf" routerLinkActive="active">Download PDF</button>
+
+      <select [(ngModel)]="contratachat.etat" [ngModelOptions]="{standalone : true}">
+        <option value="Waiting">Waiting</option>
+        <option value="Confirmed">Confirmed</option>
+        <option value="Refused">Refused</option>
+      </select>
+      <input type="text" placeholder="Reglement" [(ngModel)]="contratachat.reglement"
+             [ngModelOptions]="{standalone : true}">
+
+      <button type="text" (click)="getAllContratAchatSearch(contratachat.etat, contratachat.reglement)">Search</button>
+
+
+      <br><br>
+      <ng-template #mymodal1 let-modal1>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title" >Add new Contrat</h4>
+
+          <button type="button" class="close" aria-label="Close" (click)="modal1.dismiss('Cross click')">
+            <span aria-hidden="true" (click)="cancel()">×</span>
+          </button>
+
+        </div>
+        <div class="center">
+          <form>
+            <div class="row" class="col-md-6">
+              <input type="date" placeholder="Date Achat" [(ngModel)]="contratachat.dateAchat"
+                     [ngModelOptions]="{standalone : true}">
+            </div>
+            <div class="row" class="col-md-6">
+              <input type="text" placeholder="Reglement" [(ngModel)]="contratachat.reglement"
+                     [ngModelOptions]="{standalone : true}">
+            </div>
+
+            <br>
+            <button type="button" class="btn btn-success" (click)="addContratAchat(contratachat)" (click)="modal1.close('Save click')">Add</button>
+            <button type="button" class="btn btn-info" (click)="modal1.close('Save click')" >Cancel</button>
+          </form>
+        </div>
+      </ng-template>
+      <div class="row">
+        <div class="card" class="text-center">
+          <table class="table">
+            <thead style="background-color: rgb(192, 183, 183);">
+            <th>ID</th>
+            <th>dateAchat</th>
+            <th>reglement</th>
+            <th>etat</th>
+            <th>Edit/Delete</th>
+            <th>Confirm/Refuse</th>
+            </thead>
+            <tbody>
+            <tr *ngFor='let contratachat of  listContratachat'>
+              <td>{{contratachat.id}}</td>
+              <td>{{contratachat.dateAchat}}</td>
+              <td>{{contratachat.reglement}}</td>
+              <td>{{contratachat.etat}}</td>
+              <td>
+                <i class="fa fa-edit" style="font-size:25px;color:blue" (click)="open(mymodal)"></i>
+
+                <ng-template #mymodal let-modal>
+                  <div class="modal-header">
+                    <h4 class="modal-title" >Edit</h4>
+                    <button type="button" class="close" aria-label="Close"
+                            (click)="modal.dismiss('Cross click')">
+                      <span aria-hidden="true" (click)="cancel()">×</span>
+                    </button>
+                  </div>
+                  <div>
+                    <form>
+                      <div class="modal-body">
+
+                        <div class="row" class="col-md-5">
+                          <label>Date d'Achat</label>
+                          <input type="date" [(ngModel)]="contratachat.dateAchat" [ngModelOptions]="{standalone : true}" />
+                        </div>
+                        <div class="row" class="col-md-5">
+                          <label>Reglement</label>
+                          <input type="text" [(ngModel)]="contratachat.reglement" [ngModelOptions]="{standalone : true}" />
+                        </div>
+                        <div class="row" class="col-md-5">
+                          <label>Etat</label>
+                          <input type="text" [(ngModel)]="contratachat.etat" [ngModelOptions]="{standalone : true}" />
+                        </div>
+                        <div class="row" class="col-md-5">
+                          <label>Acheteur</label>
+                          <input type="text" [(ngModel)]="contratachat.acheteur" [ngModelOptions]="{standalone : true}" />
+                        </div>
+                        <div class="row" class="col-md-5">
+                          <label>Annoce</label>
+                          <input type="text" [(ngModel)]="contratachat.annonce" [ngModelOptions]="{standalone : true}" />
+                        </div>
+                      </div>
+
+
+                      <div class="modal-footer">
+
+                        <button type="button" class="btn btn-info"
+                                (click)="modal.close('Save click')" (click)="cancel()">Cancel</button>
+                        <button class="btn btn-success" (click)="editContratAchat(contratachat)" (click)="modal.close('Save click')">Validate</button>
+                      </div>
+                    </form>
+                  </div>
+                </ng-template>
+                <i class="fa fa-trash" style="font-size:25px;color:red" (click)="deleteContratAchat(contratachat.id)"></i>
+
+
+              </td>
+              <td>
+                <i class="fa fa-check" style="font-size:25px;color:green" (click)="ConfirmContratAchat(contratachat.id)"></i>
+                <i class="fa fa-close" style="font-size:25px;color:red" (click)="RefuseContratAchat(contratachat.id)"></i>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

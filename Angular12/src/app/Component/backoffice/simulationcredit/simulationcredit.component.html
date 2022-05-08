@@ -1,0 +1,116 @@
+<div class="row">
+  <div class="row">
+    <div class="col-md-12">
+      <button class="btn btn-round btn-sm btn-success" (click)="open(mymodal1)">Add new Stimulation </button>
+      <br><br>
+      <ng-template #mymodal1 let-modal1>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Add new Stimulation</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal1.dismiss('Cross click')">
+            <span aria-hidden="true" (click)="cancel()">×</span>
+          </button>
+
+        </div>
+        <div class="center">
+          <form>
+            <div class="row" class="col-md-6">
+              <input type="number" placeholder="salaire" [(ngModel)]="simulationcredit.salaire"
+                     [ngModelOptions]="{standalone : true}">
+            </div>
+            <div class="row" class="col-md-6">
+              <input type="number" placeholder="plafond" [(ngModel)]="simulationcredit.plafond"
+                     [ngModelOptions]="{standalone : true}">
+            </div>
+            <div class="row" class="col-md-6">
+              <input type="number" placeholder="autofinancement" [(ngModel)]="simulationcredit.autofinancement"
+                     [ngModelOptions]="{standalone : true}">
+            </div>
+
+            <div class="row" class="col-md-6">
+              <input type="number" placeholder="annee" [(ngModel)]="simulationcredit.annee"
+                     [ngModelOptions]="{standalone : true}">
+            </div>
+            <br>
+            <button type="button" class="btn btn-success" (click)="addSimulationCredit(simulationcredit)" (click)="modal1.close('Save click')">Add</button>
+            <button type="button" class="btn btn-info" (click)="modal1.close('Save click')" >Cancel</button>
+          </form>
+        </div>
+      </ng-template>
+      <div class="row">
+        <div class="card" class="text-center">
+          <table class="table">
+            <thead style="background-color: rgb(192, 183, 183);">
+            <th>ID</th>
+            <th>Salaire</th>
+            <th>Credit</th>
+            <th>Autofinancement</th>
+            <th>annee</th>
+            <th>Mensualite</th>
+            <th>Action</th>
+            </thead>
+            <tbody>
+            <tr *ngFor='let simulationcredit of  listSimulationcredit | paginate: { itemsPerPage: 4, currentPage: p }'>
+              <td>{{simulationcredit.id}}</td>
+              <td>{{simulationcredit.salaire}}</td>
+              <td>{{simulationcredit.plafond}}</td>
+              <td>{{simulationcredit.autofinancement}}</td>
+              <td>{{simulationcredit.annee}}</td>
+              <td>{{simulationcredit.mensualite}}</td>
+
+              <td><button type="button" class="btn btn-outline-primary"
+                          (click)="open(mymodal)">edit</button>
+                <ng-template #mymodal let-modal>
+                  <div class="modal-header">
+                    <h4 class="modal-title" >Edit</h4>
+                    <button type="button" class="close" aria-label="Close"
+                            (click)="modal.dismiss('Cross click')">
+                      <span aria-hidden="true" (click)="cancel()">×</span>
+
+                    </button>
+
+                  </div>
+                  <div>
+                    <form>
+                      <div class="modal-body">
+
+                        <div class="row" class="col-md-5">
+                          <label>Salaire</label>
+                          <input type="number" [(ngModel)]="simulationcredit.salaire" [ngModelOptions]="{standalone : true}" />
+                        </div>
+                        <div class="row" class="col-md-5">
+                          <label>Plafond</label>
+                          <input type="number" [(ngModel)]="simulationcredit.plafond" [ngModelOptions]="{standalone : true}" />
+                        </div>
+                        <div class="row" class="col-md-5">
+                          <label>Autofinancement</label>
+                          <input type="number" [(ngModel)]="simulationcredit.autofinancement" [ngModelOptions]="{standalone : true}" />
+                        </div>
+
+                        <div class="row" class="col-md-5">
+                          <label>Annee</label>
+                          <input type="number" [(ngModel)]="simulationcredit.annee" [ngModelOptions]="{standalone : true}" />
+                        </div>
+                      </div>
+
+                      <div class="modal-footer">
+
+                        <button type="button" class="btn btn-info"
+                                (click)="modal.close('Save click')" (click)="cancel()">Cancel</button>
+                        <button class="btn btn-success" (click)="editSimulation(simulationcredit)" (click)="modal.close('Save click')">Validate</button>
+                      </div>
+                    </form>
+                  </div>
+                </ng-template>
+                <button type="button" class="btn btn-outline-danger"
+                        (click)="deleteSimulation(simulationcredit.id)">delete</button>
+              </td>
+            </tr>
+            </tbody>
+
+          </table>
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

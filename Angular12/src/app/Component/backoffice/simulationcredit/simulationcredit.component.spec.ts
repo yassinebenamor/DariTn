@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DepotPdfComponent } from './depot-pdf.component';
+import { SimulationcreditComponent } from './simulationcredit.component';
 
-describe('DepotPdfComponent', () => {
-  let component: DepotPdfComponent;
-  let fixture: ComponentFixture<DepotPdfComponent>;
+describe('SimulationcreditComponent', () => {
+  let component: SimulationcreditComponent;
+  let fixture: ComponentFixture<SimulationcreditComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DepotPdfComponent ]
+      declarations: [ SimulationcreditComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DepotPdfComponent);
+    fixture = TestBed.createComponent(SimulationcreditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
