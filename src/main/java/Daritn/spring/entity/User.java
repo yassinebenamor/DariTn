@@ -3,6 +3,8 @@ package Daritn.spring.entity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -65,12 +67,7 @@ public class User implements Serializable {
 		this.modifiedDate = modifiedDate;
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
-				+ ", password=" + password + ", email=" + email + ", contactNum=" + contactNum + ", status=" + status
-				+ ", createdDate=" + createdDate + ", modifiedDate=" + modifiedDate + ", annonces=" + annonces + "]";
-	}
+	
 
 	public int getId() {
 		return id;
@@ -163,8 +160,6 @@ public class User implements Serializable {
 
 	
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
-	private List<Annonce> annonces;
 	
 
 }
